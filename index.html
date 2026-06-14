@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyRead AI</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+  <!-- SCREEN 1: SPLASH -->
+  <div id="screen-splash" class="screen active splash-bg">
+    <div class="splash-spacer"></div>
+    <div class="logo-center">
+      <span class="logo-text">Easy<strong>Read</strong></span>
+      <span class="logo-badge">AI</span>
+    </div>
+    <div class="splash-spacer"></div>
+    <footer class="app-footer footer-light">
+      <div class="footer-divider"></div>
+      <p class="footer-title">Desarrollado por</p>
+      <div class="footer-authors">
+        <p class="footer-name">Gonzales Pradinett, Gian Pierre <span class="footer-code">U22210810</span></p>
+        <p class="footer-name">Rios Pineda, Diego <span class="footer-code">U22206216</span></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCREEN 2: LOGIN -->
+  <div id="screen-login" class="screen login-bg">
+    <div class="login-overlay">
+      <div class="logo-center logo-dark">
+        <span class="logo-text">Easy<strong>Read</strong></span>
+        <span class="logo-badge">AI</span>
+      </div>
+      <div class="login-card">
+        <h2>Bienvenido</h2>
+        <input type="email" id="login-email" placeholder="piergonzales@gmail.com" value="piergonzales@gmail.com" />
+        <input type="password" id="login-password" placeholder="Contraseña" value="password123" />
+        <a href="#" class="forgot-link">Olvide mi contraseña</a>
+      </div>
+      <button class="btn-primary" onclick="navigate('screen-home')">Iniciar sesión</button>
+      <footer class="app-footer footer-light">
+        <div class="footer-divider"></div>
+        <p class="footer-title">Desarrollado por</p>
+        <div class="footer-authors">
+          <p class="footer-name">Gonzales Pradinett, Gian Pierre <span class="footer-code">U22210810</span></p>
+          <p class="footer-name">Rios Pineda, Diego <span class="footer-code">U22206216</span></p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: HOME -->
+  <div id="screen-home" class="screen light-bg">
+    <div class="top-bar">
+      <div class="logo-inline">
+        <span class="logo-text-sm">Easy<strong>Read</strong></span>
+        <span class="logo-badge-sm">AI</span>
+      </div>
+      <button class="power-btn" onclick="navigate('screen-login')" aria-label="Cerrar sesión">&#9211;</button>
+    </div>
+
+    <div class="home-content">
+      <p class="greeting">Hola, <strong>Pier Gonzales</strong></p>
+      <h1 class="home-title">Que deseas hacer<br/>el día de hoy?</h1>
+
+      <div class="grid-2x2">
+        <button class="grid-card" onclick="toggleHighContrast(this)" aria-pressed="false">
+          <span class="card-icon"><i data-lucide="contrast"></i></span>
+          <span class="card-label">Alto contraste</span>
+        </button>
+        <button class="grid-card" onclick="toggleLargeFont(this)" aria-pressed="false">
+          <span class="card-icon"><i data-lucide="a-large-small"></i></span>
+          <span class="card-label">Letra grande</span>
+        </button>
+        <button class="grid-card" onclick="toggleSimpleMode(this)" aria-pressed="false">
+          <span class="card-icon"><i data-lucide="brain-circuit"></i></span>
+          <span class="card-label">Modo Simple</span>
+        </button>
+        <button class="grid-card" onclick="navigate('screen-voice')" aria-label="Comando de voz">
+          <span class="card-icon"><i data-lucide="mic"></i></span>
+          <span class="card-label">Comando de voz</span>
+        </button>
+      </div>
+
+      <p class="section-label">Accesibilidad rápida</p>
+
+      <div class="quick-list">
+        <button class="quick-item" onclick="navigate('screen-reader')">
+          <span class="quick-icon"><i data-lucide="book-open-text"></i></span>
+          <div class="quick-text">
+            <span class="quick-title">Leer información</span>
+            <span class="quick-sub">Texto con voz y contraste</span>
+          </div>
+          <span class="quick-arrow"><i data-lucide="chevron-right"></i></span>
+        </button>
+        <button class="quick-item" onclick="navigate('screen-voice')">
+          <span class="quick-icon"><i data-lucide="mic-2"></i></span>
+          <div class="quick-text">
+            <span class="quick-title">Asistente de voz</span>
+            <span class="quick-sub">Texto con voz y contraste</span>
+          </div>
+          <span class="quick-arrow"><i data-lucide="chevron-right"></i></span>
+        </button>
+        <button class="quick-item" onclick="navigate('screen-settings')">
+          <span class="quick-icon"><i data-lucide="settings-2"></i></span>
+          <div class="quick-text">
+            <span class="quick-title">Configuración</span>
+            <span class="quick-sub">Texto con voz y contraste</span>
+          </div>
+          <span class="quick-arrow"><i data-lucide="chevron-right"></i></span>
+        </button>
+        <button class="quick-item" onclick="navigate('screen-survey')">
+          <span class="quick-icon"><i data-lucide="clipboard-list"></i></span>
+          <div class="quick-text">
+            <span class="quick-title">Encuesta de satisfacción</span>
+            <span class="quick-sub">Evalúa tu experiencia (Likert)</span>
+          </div>
+          <span class="quick-arrow"><i data-lucide="chevron-right"></i></span>
+        </button>
+      </div>
+    </div>
+    <footer class="app-footer footer-dark">
+      <div class="footer-divider"></div>
+      <p class="footer-title">Desarrollado por</p>
+      <div class="footer-authors">
+        <p class="footer-name">Gonzales Pradinett, Gian Pierre <span class="footer-code">U22210810</span></p>
+        <p class="footer-name">Rios Pineda, Diego <span class="footer-code">U22206216</span></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCREEN 4: VOICE ASSISTANT -->
+  <div id="screen-voice" class="screen light-bg">
+    <div class="sub-header">
+      <button class="back-btn" onclick="navigate('screen-home')">← Volver</button>
+    </div>
+    <div class="sub-content">
+      <h1 class="sub-title">Asistente de voz</h1>
+
+      <div class="bot-avatar">
+        <span class="bot-icon"><i data-lucide="bot"></i></span>
+      </div>
+      <p class="listening-label" id="listening-status">Escuchando...</p>
+
+      <div class="transcript-box">
+        <p class="transcript-label">Escuche:</p>
+        <p class="transcript-text" id="transcript-output">Hola hola hola</p>
+      </div>
+
+      <button class="btn-primary" id="voice-btn" onclick="toggleVoice()">Hablar</button>
+
+      <div class="commands-box">
+        <p class="commands-title">Comandos disponibles</p>
+        <ul class="commands-list">
+          <li><strong>"Ir a inicio"</strong> – Vuelve al inicio</li>
+          <li><strong>"Leer información"</strong> – Abre el lector</li>
+          <li><strong>"Configuración"</strong> – Abre ajustes</li>
+          <li><strong>"Alto contraste"</strong> – Activa/desactiva contraste</li>
+          <li><strong>"Letra grande"</strong> – Aumenta el texto</li>
+        </ul>
+      </div>
+    </div>
+    <footer class="app-footer footer-dark">
+      <div class="footer-divider"></div>
+      <p class="footer-title">Desarrollado por</p>
+      <div class="footer-authors">
+        <p class="footer-name">Gonzales Pradinett, Gian Pierre <span class="footer-code">U22210810</span></p>
+        <p class="footer-name">Rios Pineda, Diego <span class="footer-code">U22206216</span></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCREEN 5: READER -->
+  <div id="screen-reader" class="screen light-bg">
+    <div class="sub-header">
+      <button class="back-btn" onclick="navigate('screen-home')">← Volver</button>
+    </div>
+    <div class="sub-content">
+      <h1 class="sub-title">Lectura de información</h1>
+
+      <div class="font-controls">
+        <button class="font-btn" onclick="changeFontSize(-2)" aria-label="Reducir texto">A-</button>
+        <button class="font-btn font-btn-mid" onclick="changeFontSize(0)" aria-label="Tamaño normal">A</button>
+        <button class="font-btn" onclick="changeFontSize(2)" aria-label="Aumentar texto">A+</button>
+      </div>
+
+      <div class="reader-card">
+        <p class="reader-question">¿Qué es la accesibilidad digital?</p>
+        <p class="reader-body" id="reader-text">
+          La accesibilidad digital se refiere al diseño de productos, dispositivos, servicios y entornos
+          para personas con discapacidades. El objetivo es garantizar que todas las personas,
+          independientemente de sus capacidades, puedan acceder y usar la tecnología de manera efectiva.
+          Incluye aspectos como el uso de lectores de pantalla, navegación por teclado, subtítulos en
+          videos, alto contraste visual y muchas otras adaptaciones que hacen la tecnología más inclusiva.
+          Según la OMS, más de mil millones de personas en el mundo viven con algún tipo de discapacidad,
+          lo que representa aproximadamente el 15% de la población mundial.
+        </p>
+      </div>
+
+      <button class="btn-primary" onclick="speakContent()">Escuchar contenido</button>
+    </div>
+    <footer class="app-footer footer-dark">
+      <div class="footer-divider"></div>
+      <p class="footer-title">Desarrollado por</p>
+      <div class="footer-authors">
+        <p class="footer-name">Gonzales Pradinett, Gian Pierre <span class="footer-code">U22210810</span></p>
+        <p class="footer-name">Rios Pineda, Diego <span class="footer-code">U22206216</span></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCREEN 6: SETTINGS -->
+  <div id="screen-settings" class="screen light-bg">
+    <div class="sub-header">
+      <button class="back-btn" onclick="navigate('screen-home')">← Volver</button>
+    </div>
+    <div class="sub-content">
+      <h1 class="sub-title">Configuración</h1>
+
+      <div class="settings-list">
+        <div class="setting-item">
+          <span class="setting-label">Alto contraste</span>
+          <label class="toggle" aria-label="Alto contraste">
+            <input type="checkbox" id="toggle-contrast" onchange="applyContrast(this)" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <span class="setting-label">Subtítulos automáticos</span>
+          <label class="toggle" aria-label="Subtítulos automáticos">
+            <input type="checkbox" id="toggle-subtitles" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <span class="setting-label">Modo cognitivo simplificado</span>
+          <label class="toggle" aria-label="Modo cognitivo simplificado">
+            <input type="checkbox" id="toggle-simple" checked onchange="applySimpleMode(this)" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <span class="setting-label">Compatibilidad con lector de pantalla</span>
+          <label class="toggle" aria-label="Compatibilidad con lector de pantalla">
+            <input type="checkbox" id="toggle-screenreader" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <footer class="app-footer footer-dark">
+      <div class="footer-divider"></div>
+      <p class="footer-title">Desarrollado por</p>
+      <div class="footer-authors">
+        <p class="footer-name">Gonzales Pradinett, Gian Pierre <span class="footer-code">U22210810</span></p>
+        <p class="footer-name">Rios Pineda, Diego <span class="footer-code">U22206216</span></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCREEN 7: SURVEY (Likert) -->
+  <div id="screen-survey" class="screen light-bg">
+    <div class="sub-header">
+      <button class="back-btn" onclick="navigate('screen-home')">← Volver</button>
+    </div>
+    <div class="sub-content">
+      <h1 class="sub-title">Encuesta de satisfacción</h1>
+      <p class="survey-intro">Evalúa tu experiencia con EasyRead AI. Selecciona una opción para cada pregunta.</p>
+
+      <form id="survey-form" class="survey-form">
+        <!-- STEP 0: Datos del usuario -->
+        <div class="survey-step active" data-step="0">
+          <p class="step-indicator">Datos del participante</p>
+
+          <div class="survey-question">
+            <p class="survey-q-text">Nombre completo</p>
+            <input type="text" id="survey-name" class="survey-input" placeholder="Ej: Juan Pérez" required />
+          </div>
+
+          <div class="survey-question">
+            <p class="survey-q-text">Edad</p>
+            <input type="number" id="survey-age" class="survey-input" placeholder="Ej: 25" min="10" max="120" required />
+          </div>
+
+          <div class="survey-question">
+            <p class="survey-q-text">Tipo de discapacidad (opcional)</p>
+            <select id="survey-disability" class="survey-input">
+              <option value="">— Seleccionar —</option>
+              <option value="visual">Visual</option>
+              <option value="auditiva">Auditiva</option>
+              <option value="motora">Motora</option>
+              <option value="cognitiva">Cognitiva</option>
+              <option value="ninguna">Ninguna</option>
+              <option value="otra">Otra</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn-primary" onclick="goToStep(1)">Comenzar encuesta</button>
+        </div>
+
+        <!-- STEP 1: Preguntas 1-3 -->
+        <div class="survey-step" data-step="1">
+          <p class="step-indicator">Paso 1 de 3</p>
+
+          <div class="survey-question" data-question="1">
+            <p class="survey-q-text">1. La aplicación es fácil de usar</p>
+            <div class="likert-scale">
+              <label class="likert-option"><input type="radio" name="q1" value="1" required /><span class="likert-label">Muy en desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q1" value="2" /><span class="likert-label">En desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q1" value="3" /><span class="likert-label">Neutral</span></label>
+              <label class="likert-option"><input type="radio" name="q1" value="4" /><span class="likert-label">De acuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q1" value="5" /><span class="likert-label">Muy de acuerdo</span></label>
+            </div>
+          </div>
+
+          <div class="survey-question" data-question="2">
+            <p class="survey-q-text">2. El modo alto contraste mejora la legibilidad</p>
+            <div class="likert-scale">
+              <label class="likert-option"><input type="radio" name="q2" value="1" required /><span class="likert-label">Muy en desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q2" value="2" /><span class="likert-label">En desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q2" value="3" /><span class="likert-label">Neutral</span></label>
+              <label class="likert-option"><input type="radio" name="q2" value="4" /><span class="likert-label">De acuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q2" value="5" /><span class="likert-label">Muy de acuerdo</span></label>
+            </div>
+          </div>
+
+          <div class="survey-question" data-question="3">
+            <p class="survey-q-text">3. El asistente de voz responde correctamente</p>
+            <div class="likert-scale">
+              <label class="likert-option"><input type="radio" name="q3" value="1" required /><span class="likert-label">Muy en desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q3" value="2" /><span class="likert-label">En desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q3" value="3" /><span class="likert-label">Neutral</span></label>
+              <label class="likert-option"><input type="radio" name="q3" value="4" /><span class="likert-label">De acuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q3" value="5" /><span class="likert-label">Muy de acuerdo</span></label>
+            </div>
+          </div>
+
+          <button type="button" class="btn-primary" onclick="goToStep(2)">Siguiente</button>
+        </div>
+
+        <!-- STEP 2: Preguntas 4-5 -->
+        <div class="survey-step" data-step="2">
+          <p class="step-indicator">Paso 2 de 3</p>
+
+          <div class="survey-question" data-question="4">
+            <p class="survey-q-text">4. La función de lectura en voz alta es útil</p>
+            <div class="likert-scale">
+              <label class="likert-option"><input type="radio" name="q4" value="1" required /><span class="likert-label">Muy en desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q4" value="2" /><span class="likert-label">En desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q4" value="3" /><span class="likert-label">Neutral</span></label>
+              <label class="likert-option"><input type="radio" name="q4" value="4" /><span class="likert-label">De acuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q4" value="5" /><span class="likert-label">Muy de acuerdo</span></label>
+            </div>
+          </div>
+
+          <div class="survey-question" data-question="5">
+            <p class="survey-q-text">5. La configuración es intuitiva y accesible</p>
+            <div class="likert-scale">
+              <label class="likert-option"><input type="radio" name="q5" value="1" required /><span class="likert-label">Muy en desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q5" value="2" /><span class="likert-label">En desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q5" value="3" /><span class="likert-label">Neutral</span></label>
+              <label class="likert-option"><input type="radio" name="q5" value="4" /><span class="likert-label">De acuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q5" value="5" /><span class="likert-label">Muy de acuerdo</span></label>
+            </div>
+          </div>
+
+          <div class="survey-nav">
+            <button type="button" class="btn-secondary" onclick="goToStep(1)">Anterior</button>
+            <button type="button" class="btn-primary" onclick="goToStep(3)">Siguiente</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Preguntas 6-7 + Comentarios -->
+        <div class="survey-step" data-step="3">
+          <p class="step-indicator">Paso 3 de 3</p>
+
+          <div class="survey-question" data-question="6">
+            <p class="survey-q-text">6. El tamaño del texto se ajusta adecuadamente</p>
+            <div class="likert-scale">
+              <label class="likert-option"><input type="radio" name="q6" value="1" required /><span class="likert-label">Muy en desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q6" value="2" /><span class="likert-label">En desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q6" value="3" /><span class="likert-label">Neutral</span></label>
+              <label class="likert-option"><input type="radio" name="q6" value="4" /><span class="likert-label">De acuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q6" value="5" /><span class="likert-label">Muy de acuerdo</span></label>
+            </div>
+          </div>
+
+          <div class="survey-question" data-question="7">
+            <p class="survey-q-text">7. Recomendaría esta app a personas con discapacidad</p>
+            <div class="likert-scale">
+              <label class="likert-option"><input type="radio" name="q7" value="1" required /><span class="likert-label">Muy en desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q7" value="2" /><span class="likert-label">En desacuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q7" value="3" /><span class="likert-label">Neutral</span></label>
+              <label class="likert-option"><input type="radio" name="q7" value="4" /><span class="likert-label">De acuerdo</span></label>
+              <label class="likert-option"><input type="radio" name="q7" value="5" /><span class="likert-label">Muy de acuerdo</span></label>
+            </div>
+          </div>
+
+          <div class="survey-question">
+            <p class="survey-q-text">Comentarios adicionales (opcional)</p>
+            <textarea id="survey-comments" class="survey-textarea" rows="3" placeholder="Escribe tus comentarios aquí..."></textarea>
+          </div>
+
+          <div class="survey-nav">
+            <button type="button" class="btn-secondary" onclick="goToStep(2)">Anterior</button>
+            <button type="submit" class="btn-primary">Enviar encuesta</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- REPORTES -->
+      <div id="survey-report" class="survey-report" style="display:none;">
+        <h2 class="report-title">Reporte de resultados</h2>
+        <p class="report-subtitle" id="report-count">Respuestas registradas: 0</p>
+
+        <div id="report-bars" class="report-bars"></div>
+
+        <div class="report-summary">
+          <div class="report-stat">
+            <span class="stat-value" id="stat-avg">0.0</span>
+            <span class="stat-label">Promedio general</span>
+          </div>
+          <div class="report-stat">
+            <span class="stat-value" id="stat-max">0</span>
+            <span class="stat-label">Puntaje más alto</span>
+          </div>
+          <div class="report-stat">
+            <span class="stat-value" id="stat-min">0</span>
+            <span class="stat-label">Puntaje más bajo</span>
+          </div>
+        </div>
+
+        <div id="report-history" class="report-history"></div>
+
+        <div class="report-actions">
+          <button class="btn-primary" onclick="exportReport()">Descargar reporte</button>
+          <button class="btn-secondary" onclick="resetSurvey()">Nueva encuesta</button>
+        </div>
+      </div>
+    </div>
+    <footer class="app-footer footer-dark">
+      <div class="footer-divider"></div>
+      <p class="footer-title">Desarrollado por</p>
+      <div class="footer-authors">
+        <p class="footer-name">Gonzales Pradinett, Gian Pierre <span class="footer-code">U22210810</span></p>
+        <p class="footer-name">Rios Pineda, Diego <span class="footer-code">U22206216</span></p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
